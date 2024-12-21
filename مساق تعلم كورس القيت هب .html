@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // تحميل مكتبة Mermaid فقط عند التمرير
+        document.addEventListener("DOMContentLoaded", () => {
+            const script = document.createElement("script");
+            script.src = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js";
+            script.onload = () => mermaid.initialize({ startOnLoad: true });
+            document.body.appendChild(script);
+        });
+    </script>
+
+    <title>توثيق دورة Git و GitHub</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9fb;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.8;
+        }
+        header {
+            background-color: #007acc;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007acc;
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f0f7ff;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 6px solid #007acc;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        ul li:hover {
+            background: #e8f3ff;
+        }
+        ul li code {
+            background: #eaeaea;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        ul li::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #007acc, #005999);
+            transition: width 0.3s;
+        }
+        ul li:hover::after {
+            width: 100%;
+            opacity: 0.1;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #007acc;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>توثيق دورة Git و GitHub</h1>
+    </header>
+    <main>
+        <h2>ما الذي تعلمته؟</h2>
+        <ul>
+            <li><strong>إنشاء حساب على GitHub:</strong> الخطوة الأولى لإنشاء مستودعات برمجية احترافية.</li>
+            <li><strong>إنشاء مستودع (Repository):</strong> منصة لتخزين وتنظيم المشاريع البرمجية.</li>
+            <li><strong>التنقل عبر <code>cd</code>:</strong> الوصول إلى المجلدات عبر الطرفية بسهولة.</li>
+            <li><strong>إنشاء ملفات:</strong> باستخدام <code>mkdir</code> لإعداد مجلد جديد.</li>
+            <li><strong>استنساخ مستودعات:</strong> باستخدام <code>git clone</code> لتنزيل نسخة محلية.</li>
+            <li><strong>إعداد اتصال آمن (SSH):</strong> 
+                <ol>
+                    <li>إنشاء مفتاح: <code>ssh-keygen</code>.</li>
+                    <li>إضافة المفتاح إلى حسابك: نسخ المفتاح بـ <code>cat ~/.ssh/id_rsa.pub</code> وإضافته.</li>
+                    <li>اختبار التهيئة: <code>ssh -T git@github.com</code>.</li>
+                </ol>
+            </li>
+            <li><strong>إنشاء برانش مؤقت وإجراء Pull Request:</strong>
+                <ol>
+                    <li><strong>التأكد من البرانش النشط:</strong><br>
+                        تحقق من أنك على البرانش الرئيسي <code>master</code> أو <code>main</code> باستخدام:<br>
+                        <code>git branch</code>. إذا لم تكن على البرانش المطلوب، استخدم:<br>
+                        <code>git checkout master</code> أو <code>git checkout main</code>.
+                    </li>
+                    <li><strong>إنشاء برانش جديد:</strong><br>
+                        استخدم الأمر:<br>
+                        <code>git checkout -b اسم-البرانش-الجديد</code>.<br>
+                        مثال: <code>git checkout -b feature-update</code>.
+                    </li>
+                    <li><strong>إجراء التعديلات:</strong><br>
+                        قم بتحرير الملفات وحفظ التغييرات.
+                    </li>
+                    <li><strong>إضافة الملفات المعدلة:</strong><br>
+                        قم بإضافة جميع الملفات المعدلة باستخدام:<br>
+                        <code>git add .</code>
+                    </li>
+                    <li><strong>تسجيل التعديلات (Commit):</strong><br>
+                        استخدم الأمر التالي مع رسالة توضح التعديلات:<br>
+                        <code>git commit -m "رسالة توضح التعديلات"</code>
+                    </li>
+                    <li><strong>رفع البرانش الجديد:</strong><br>
+                        ارفع البرانش إلى المستودع باستخدام الأمر:<br>
+                        <code>git push origin اسم-البرانش</code>.<br>
+                        مثال: <code>git push origin feature-update</code>.
+                    </li>
+                    <li><strong>فتح طلب Pull Request:</strong><br>
+                        <ol>
+                            <li>اذهب إلى صفحة المستودع على GitHub.</li>
+                            <li>ستجد إشعارًا يظهر بجانب البرانش الجديد بعنوان "Compare & pull request". اضغط عليه.</li>
+                            <li>قم بمراجعة التعديلات وإضافة وصف واضح لما قمت به.</li>
+                            <li>اضغط على "Create pull request" لإرسال الطلب.</li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+
+        <div class="mermaid">
+            graph TD
+                A[إنشاء حساب على GitHub] --> B[إنشاء Repository]
+                B --> C[التنقل باستخدام cd]
+                C --> D[إنشاء ملف باستخدام mkdir]
+                D --> E[استنساخ المستودع بـ git clone]
+                E --> F[إعداد مفتاح SSH باستخدام ssh-keygen]
+                F --> G[اختبار الاتصال بـ ssh -T git@github.com]
+                G --> H[إنشاء برانش جديد]
+                H --> I[إجراء التعديلات ورفع البرانش]
+                I --> J[فتح Pull Request على GitHub]
+        </div>
+    </main>
+    <footer>
+        <p>تم التوثيق بواسطة: <strong>Abdullrahman Ali</strong></p>
+    </footer>
+</body>
+</html>
